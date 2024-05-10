@@ -14,7 +14,7 @@
 # Methods
 - I’ll say this: you wanna get in the game, you’ve gotta get some dirt under those pretty fingernails, coz that’s where its at - **A man in Full** `S1E1: Saddlebags`
 
----
+# Results
 
 - [Transvaluation of all values](https://www.youtube.com/watch?v=cYBgE5C4HaY)
 - [Burned out v. Bored](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Challenge_vs_skill.svg/2560px-Challenge_vs_skill.svg.png)
@@ -61,5 +61,9 @@ When in the consensus zone you're not novel or good for a startup; that's commun
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Challenge_vs_skill.svg/2560px-Challenge_vs_skill.svg.png)
 
- 
-
+ # Conclusions
+ - Man,  this is fun stuff! You think I could take him?
+ - I'm sorry?
+ - Kroger? I know he was this big college athlete. You think I could take him?
+ - Well, is that important?
+ - Is it important? Part of being a man - not the main part, but "A" part, is being able to kick another man's ass
