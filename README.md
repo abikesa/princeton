@@ -1,1 +1,10 @@
-# princeton
+- Watching E1 of Limited Netflix series "A Man in Full"
+- I pause exactly half-way (22min) of the this Episode
+- And investigate who the writer of this show is
+- My Google search leads me to the "wrong link":
+- The [novel](https://en.wikipedia.org/wiki/A_Man_in_Full#Summary) on which it is based:
+- One word catches my eye: `Stoic philosophy`; I'm immediately convinced there's a Princeton Graduate involved
+- So, Tom Wolfe didn't go to Princeton, but this work is criticized by Updike!
+- The creator of the Netflix series, however, did his undergrad at Princeton!!
+- Regina King happens to have directed episode 1, 5, and 6
+- Prediction accuracy or pure chance? Let's go by the odds
