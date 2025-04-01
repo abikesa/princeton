@@ -719,17 +719,12 @@ document.write(`
         <span class="p">(</span><span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Symphony&#39;</span><span class="p">)</span>
     <span class="p">]</span>
 
-<span class="c1"># Define black edges (1 → 7 → 9 → 11 → [13-17])</span>
-<span class="n">black_edges</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
-<span class="p">]</span>
-
 <span class="c1"># Calculate node positions</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_positions</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">x_offset</span><span class="p">):</span>
     <span class="n">y_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="p">))</span>
     <span class="k">return</span> <span class="p">[(</span><span class="n">x_offset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">y_positions</span><span class="p">]</span>
 
-<span class="c1"># Create and visualize the neural network graph with correctly assigned black edges</span>
+<span class="c1"># Create and visualize the neural network graph</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">visualize_nn</span><span class="p">():</span>
     <span class="n">layers</span> <span class="o">=</span> <span class="n">define_layers</span><span class="p">()</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="n">assign_colors</span><span class="p">()</span>
@@ -739,7 +734,7 @@ document.write(`
     <span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">node_colors</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="c1"># Create mapping from original node names to numbered labels</span>
+    <span class="c1"># Numbered node labels</span>
     <span class="n">mapping</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -747,7 +742,7 @@ document.write(`
             <span class="n">mapping</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="c1"># Add nodes with new numbered labels and assign positions</span>
+    <span class="c1"># Add nodes and positions</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">layer_name</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="n">calculate_positions</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">x_offset</span><span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">position</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
@@ -756,7 +751,7 @@ document.write(`
             <span class="n">pos</span><span class="p">[</span><span class="n">new_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">position</span>
             <span class="n">node_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;lightgray&#39;</span><span class="p">))</span>
 
-    <span class="c1"># Add edges with updated node labels</span>
+    <span class="c1"># Add edges</span>
     <span class="n">edge_colors</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">mapping</span><span class="p">:</span>
@@ -765,37 +760,36 @@ document.write(`
             <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">new_source</span><span class="p">,</span> <span class="n">new_target</span><span class="p">)</span>
             <span class="n">edge_colors</span><span class="p">[(</span><span class="n">new_source</span><span class="p">,</span> <span class="n">new_target</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;lightgrey&#39;</span>
 
-    <span class="c1"># Define and add black edges manually with correct node names</span>
+    <span class="c1"># Add black highlight edges</span>
     <span class="n">numbered_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapping</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="n">black_edge_list</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span>  <span class="c1"># 4 -&gt; 7</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">8</span><span class="p">]),</span>  <span class="c1"># 7 -&gt; 9</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span> <span class="c1"># 9 -&gt; 11</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span>   <span class="c1"># 4 -&gt; 7</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">8</span><span class="p">]),</span>   <span class="c1"># 7 -&gt; 9</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span>  <span class="c1"># 9 -&gt; 11</span>
         <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">12</span><span class="p">]),</span> <span class="c1"># 11 -&gt; 13</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">13</span><span class="p">]),</span> <span class="c1"># 11 -&gt; 14</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">14</span><span class="p">]),</span> <span class="c1"># 11 -&gt; 15</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">15</span><span class="p">]),</span> <span class="c1"># 11 -&gt; 16</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>  <span class="c1"># 11 -&gt; 17</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">13</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">14</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">15</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>
     <span class="p">]</span>
-
     <span class="k">for</span> <span class="n">src</span><span class="p">,</span> <span class="n">tgt</span> <span class="ow">in</span> <span class="n">black_edge_list</span><span class="p">:</span>
         <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">tgt</span><span class="p">)</span>
         <span class="n">edge_colors</span><span class="p">[(</span><span class="n">src</span><span class="p">,</span> <span class="n">tgt</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
 
-    <span class="c1"># Draw the graph</span>
+    <span class="c1"># Draw the network</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
     <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
         <span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> 
         <span class="n">edge_color</span><span class="o">=</span><span class="p">[</span><span class="n">edge_colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="s1">&#39;lightgrey&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">],</span>
         <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.2&quot;</span>
     <span class="p">)</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CG-BEST&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figures/cgbest.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>  <span class="c1"># ✅ Save it with control</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CG-BEST&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
+    <span class="c1"># ✅ Save the actual image *after* drawing it</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figures/cgbest.jpeg&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1"># Run the visualization</span>
+<span class="c1"># Run it</span>
 <span class="n">visualize_nn</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -821,7 +815,7 @@ document.write(`
 </div>
 {/raw}
 <figure class="align-default">
-<a class="reference internal image-reference" href="https://www.ledr.com/colours/white.jpg"><img alt="https://www.ledr.com/colours/white.jpg" src="https://www.ledr.com/colours/white.jpg" style="width: 1px; height: 1px;" /></a>
+<a class="reference internal image-reference" href="_images/figures"><img alt="_images/figures" src="_images/figures" style="width: 1px; height: 1px;" /></a>
 </figure>
 </div>
 <p>In that light, the scientific community must also reckon with its own role. Where was Athena before the crisis? Had she grown haughty? Had the academy’s own illusions become too Apollonian—too self-congratulatory, too detached from the anxieties of the common person? Perhaps. Perhaps Trumpism did not invent the fire but merely ignited a pile of dry credibility.</p>
