@@ -525,9 +525,22 @@ document.write(`
     background-color: #aaa;
     border: 1px solid #666;
     border-radius: 2px;
-    bottom: -3px;
-    left: -3px;
+
+    /* Move northeast inside the large-icon */
+    top: 1px;     /* ↓ Increase = move down */
+    right: 1px;   /* ↓ Increase = move left */
 }
+
+.image-bubble.layered-icon:hover .large-icon {
+    background-color: #007BFF; /* bright blue on hover */
+    border-color: #0056b3;
+}
+
+.image-bubble.layered-icon:hover .small-icon {
+    background-color: white;   /* contrast pop on hover */
+    border-color: #007BFF;
+}
+
 </style>
 
 <div class="float-right">
